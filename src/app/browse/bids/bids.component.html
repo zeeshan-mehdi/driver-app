@@ -1,0 +1,65 @@
+
+    <ActionBar class="action-bar" title="Job Bids">
+       
+            <NavigationButton android.systemIcon="ic_menu_back" text="Back to ActionBar"
+            (tap)="goBack()"></NavigationButton>
+            </ActionBar>
+            
+            
+        <GridLayout class="page page-content"rows="*" colums="*">
+             
+                <StackLayout  visibility="{{ showSpinner ? 'visible' : 'collapse'}}"   row="0" column="0" >
+                     
+                      
+           <!-- <ListView [items]="jobList" class="list-group">
+                <ng-template let-item="item">
+                    <StackLayout [nsRouterLink]="['/browse', item.jobID]">
+                    <Label  [text]="item.jobOrigin"></Label>
+                    <Label [text]="item.jobDestination"
+                        class="list-group-item"></Label>
+                    </StackLayout>
+                </ng-template>
+            </ListView>-->
+        
+            <ListView class="list-group" [items]="bidsList" [items]="bidsList" class="list-group" selectionBehavior="Press" 
+            (itemTap)="bidSelected($event)" >
+                    <ng-template let-item="item">
+                            
+                        <GridLayout columns="*" rows="auto,auto,auto" 
+                            height="100" style="margin:3; padding:4; background-color:lightyellow">
+                          
+                            <StackLayout orientation="horizontal" width="auto" height="auto" style="padding:2"
+                                row="0" col="0" colSpan="2">
+                                <Label text="Firm Name : " class="lbl"></Label>
+                                <Label [text]="item.FirmName"  class="lbl-txt"></Label>
+                            </StackLayout>
+                            <!-- Row 1 Col 1-->
+                            <StackLayout orientation="horizontal" width="auto" height="auto" style="padding:3"
+                                row="1" col="0" colSpan="2">
+                                <Label text="Contact : " class="lbl"></Label>
+                                <Label [text]="item.FirmPhone" class="lbl-txt" ></Label>
+                            </StackLayout>
+        
+                            <StackLayout orientation="horizontal" width="auto" height="auto" style="padding:3"
+                            row="2" col="0" colSpan="2">
+                            <Label text="Bid Amount : " class="lbl"></Label>
+                            <Label [text]="item.amount" class="lbl-txt" ></Label>
+                        </StackLayout>
+                          
+                        </GridLayout>
+        
+                    </ng-template>
+                </ListView>
+           
+          
+                
+            </StackLayout>
+           
+        
+        
+        <ActivityIndicator class="chartspinner" visibility="{{ !showSpinner ? 'visible' : 'collapse'}}" busy="{{ !showSpinner }}" rowSpan="1" colSpan="1"  row="0" column="0"></ActivityIndicator>
+        
+        <Label class="chartspinner" text="No jobs ..!" style="font-size:20; text-align:center;" visibility="{{ nojobs ? 'visible' : 'collapse'}}"  rowSpan="1" colSpan="1"  row="0" column="0"></Label>
+        </GridLayout>
+        
+        

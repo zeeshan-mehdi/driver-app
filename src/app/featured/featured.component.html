@@ -1,0 +1,32 @@
+<ActionBar class="action-bar">
+
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed"
+        (tap)="onDrawerButtonTap()" ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Profile"></Label>
+</ActionBar>
+<GridLayout>
+    <ScrollView>
+        <StackLayout>
+            <Image class="pic" [src]="imageSrc" *ngIf="isSingleMode" width="100" height="100"  stretch="aspectFit"></Image>
+  
+            <Button text="Select Picture" (tap)="selectPhoto()" class="btn_select_picture">
+            </Button>
+            <Label text="Owner Name" class="lbl"></Label>
+            <TextField [(ngModel)]="user.owner" class="txt-field"></TextField>
+            <Label text="Phone" class="lbl"></Label>
+            <TextField [(ngModel)]="user.phoneNumber" class="txt-field"
+                keyboardType="phone"></TextField>
+            <Label text="License" class="lbl"></Label>
+            <TextField [(ngModel)]="user.license" class="txt-field"></TextField>
+            <Label text="Number of Jobs" class="lbl"></Label>
+            <TextField [(ngModel)]="user.jobcount" class="txt-field"></TextField>
+            <Label text="Address" class="lbl"></Label>
+            <TextField [(ngModel)]="user.address" class="txt-field"></TextField>
+            <Label text="Earning" class="lbl"></Label>
+            <TextField [(ngModel)]="user.earning" class="txt-field"></TextField>
+           
+        </StackLayout>
+    </ScrollView>
+</GridLayout>

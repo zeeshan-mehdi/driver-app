@@ -1,0 +1,51 @@
+<!--<StackLayout  >
+ 
+    <TextField #phone="ngModel"  class="input" hint="phoneNumber"  autocorrect="false" autocapitalizationType="none" 
+     returnKeyType="next" [(ngModel)]="user.phoneNumber" 
+     (ngModelChange)='user.phoneNumber=$event'
+     required keyboardType="phone"></TextField>
+        
+    <Label  *ngIf="phone.errors && (phone.dirty)">
+        <FormattedString>
+    <Span  class="text-danger" text="Please Enter a valid E-mail ">
+
+    </Span>
+</FormattedString>
+</Label>	
+
+    <TextField  class="input" hint="Password" secure="true" [(ngModel)]="user.password" (ngModelChange)='user.password=$event'   ></TextField>
+   
+<Button text="Log In" (tap)="submit()" class="btn btn-primary m-t-20" ></Button>
+<Button text="register" (tap)="register()" class="btn btn-primary m-t-20" ></Button>
+
+</StackLayout>-->
+<ActionBar actionBarHidden="true">
+
+</ActionBar>
+
+<GridLayout  rows="*" colums="*" >
+
+    <StackLayout class="page page-content"  visibility="{{ showSpinner ? 'visible' : 'collapse'}}" row="0" column="0">
+<GridLayout class="page">
+    <ScrollView>
+        <StackLayout>
+            <Image src="~/images/icon.png" class="img-logo"></Image>
+            <Label text="Sign in" class="lbl-sign-in"></Label>
+            <TextField  class="txt-field" #phone="ngModel"   hint="phoneNumber"  autocorrect="false" autocapitalizationType="none" 
+            returnKeyType="next" [(ngModel)]="user.phoneNumber" 
+            (ngModelChange)='user.phoneNumber=$event'
+            required keyboardType="phone"
+               ></TextField>
+            <TextField  class="txt-field" hint="Password" secure="true" [(ngModel)]="user.password" (ngModelChange)='user.password=$event'  ></TextField>
+            <Button text="Submit" (tap)="submit()" class="btn-submit"></Button>
+            <CheckBox style="  text-align: center; margin-left: 200; " #CB1 text="Remember Me" (checkedChange)="onRem()" class="label" fillColor="black" [checked]="rem" ></CheckBox>
+                       <Button text="Frogot Password?" (tap)="onButtonTap()" class="btn-forgot-password"></Button>
+          <!--  <Button text="Register Now" (tap)="register()" class="btn-register-now"></Button>-->
+        </StackLayout>
+    </ScrollView>
+</GridLayout>
+</StackLayout>
+
+<ActivityIndicator class="chartspinner" visibility="{{ !showSpinner ? 'visible' : 'collapse'}}" busy="{{ !showSpinner }}" rowSpan="1" colSpan="1"  row="0" column="0"></ActivityIndicator>
+
+</GridLayout>

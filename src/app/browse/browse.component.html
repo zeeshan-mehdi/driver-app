@@ -1,0 +1,69 @@
+<ActionBar class="action-bar">
+
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed"
+        (tap)="onDrawerButtonTap()" ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Add Driver"></Label>
+</ActionBar>
+
+<GridLayout class="page page-content" rows="*" colums="*" style= " padding-top: 10">
+     
+    <GridLayout  visibility="{{ showSpinner ? 'visible' : 'collapse'}}"   row="0" column="0" >
+         <StackLayout orientation="vertical">
+    <SearchBar hint="Search Driver"
+     [text]="searchPhrase" 
+     [(ngModel)]="searchPhrase" 
+       (textChange)="onTextChanged($event)"
+        (submit)="onSubmit($event)" 
+        (clear)="onClear($event)"
+     ></SearchBar>
+    <ListView class="list-group" [items]="driverList"
+     (itemTap)="onItemTap($event)"
+     (itemSwipeProgressEnded)="onSwipeCellFinished($event)"
+     (itemSwipeProgressStarted)="onSwipeCellStarted($event)" 
+     (itemSwipeProgressChanged)="onCellSwiping($event)"
+      swipeActions="true"
+        separatorColor="transparent">
+        <ng-template let-item="item">
+            <StackLayout>
+            <GridLayout columns="50,*,auto" rows="*" class="list-group-item" >
+                <StackLayout orientation="horizontal" width="auto" height="auto"
+                    row="0" col="0">
+                    <Image src="~/images/user.png"
+                        class="side-img"></Image>
+                </StackLayout>
+
+                <StackLayout orientation="vertical" width="auto" height="auto"
+                row="0" col="1">
+                <Label [text]="item.name" class="lbl-name"
+                   ></Label>
+                   <Label [text]="item.address" class="lbl-phone"
+                   ></Label>
+                   <Label [text]="item.phoneNO" class="lbl-phone"></Label>
+            </StackLayout>
+
+            <StackLayout orientation="horizontal" width="auto" height="auto"
+            row="0" col="2"  horizontalAlignment="center">
+            <Label [text]="item.status" class="lbl-active"></Label>
+        </StackLayout>
+           
+           
+
+            </GridLayout>
+        </StackLayout>
+
+
+
+
+        </ng-template>
+
+         
+    </ListView>
+</StackLayout>
+</GridLayout>
+   
+
+
+<ActivityIndicator class="chartspinner" visibility="{{ !showSpinner ? 'visible' : 'collapse'}}" busy="{{ !showSpinner }}" rowSpan="1" colSpan="1"  row="0" column="0"></ActivityIndicator>
+</GridLayout>

@@ -1,0 +1,150 @@
+<ActionBar title="Register" class="action-bar"></ActionBar>
+<GridLayout  rows="*" colums="*" >
+
+    <StackLayout class="page page-content" style="margin-top:20"  visibility="{{ showSpinner ? 'visible' : 'collapse'}}" row="0" column="0">
+
+
+<ScrollView>
+<FlexboxLayout class="page">
+
+	<StackLayout class="form">
+	
+		<StackLayout class="input-field" >
+	<TextField  #name="ngModel" class="input" hint="Name"
+	 minlength="3"  autocorrect="true" autocapitalizationType="none"
+	  [(ngModel)]="user.name" returnKeyType="next" required>
+		</TextField>
+			<StackLayout class="hr-light"></StackLayout>
+			<!--___________________________Error________________________________          -->
+			<Label  *ngIf="name.errors && (name.dirty)">
+					<FormattedString>
+				<Span  class="text-danger" text="Name must be atleast 3 character long ">
+
+				</Span>
+			</FormattedString>
+			</Label>	
+			<!--___________________________________________________________          -->
+        </StackLayout>
+        
+        
+	
+		<StackLayout class="input-field">
+			<TextField class="input" #email="ngModel" 
+			 hint="Email" keyboardType="email" autocorrect="false" autocapitalizationType="none"
+			  [(ngModel)]="user.email" returnKeyType="next"
+			   required email></TextField>
+			<StackLayout class="hr-light"></StackLayout>
+		
+			<!--___________________________Error________________________________          -->
+			<Label  *ngIf="email.errors && (email.dirty)">
+					<FormattedString>
+				<Span  class="text-danger" text="E-mail should be a valid e-mail ">
+
+				</Span>
+			</FormattedString>
+			</Label>	
+			<!--___________________________________________________________    -->
+		</StackLayout>
+
+		<StackLayout class="input-field">
+				<TextField class="input" #phone="ngModel"  hint="Phone No"
+				 keyboardType="phone" autocorrect="false" autocapitalizationType="none"
+				  [(ngModel)]="user.phoneNumber" returnKeyType="next"
+				   required email></TextField>
+				<StackLayout class="hr-light"></StackLayout>
+			
+				<!--___________________________Error________________________________          -->
+				<Label  *ngIf="email.errors && (email.dirty)">
+						<FormattedString>
+					<Span  class="text-danger" text="Invalid Phone">
+	
+					</Span>
+				</FormattedString>
+				</Label>	
+				<!--___________________________________________________________    -->
+			</StackLayout>
+
+		<StackLayout class="input-field">
+			<TextField  #address="ngModel" class="input" hint="Address"
+			 minlength="1"  autocorrect="true" autocapitalizationType="none" 
+			 [(ngModel)]="user.address" returnKeyType="next" required>
+                </TextField>
+                    <StackLayout class="hr-light"></StackLayout>
+                    <!--___________________________Error________________________________          -->
+                
+				</StackLayout>
+				
+
+
+				<StackLayout orientation="horizontal">
+					<Label style="color : #A8A8A8; font-size : 15;" text="DOB"></Label>
+				<DatePicker #dob
+				verticalAlignment="center"></DatePicker>
+				
+							<StackLayout class="hr-light"></StackLayout>
+						
+						</StackLayout>
+
+				
+		<StackLayout class="input-field">
+			<TextField #password="ngModel" class="input" hint="Password" 
+			secure="true" [(ngModel)]="user.password" [returnKeyType]="next" 
+			 minlength="6"></TextField>
+			<StackLayout class="hr-light"></StackLayout>
+
+			<!--___________________________Error________________________________          -->
+			<Label  *ngIf="password.errors && (password.dirty)">
+					<FormattedString>
+				<Span  class="text-danger" text="Enter atleast 6 characters">
+
+				</Span>
+			</FormattedString>
+			</Label>	
+			<!--___________________________________________________________    -->
+		</StackLayout>
+		<StackLayout class="input-field">
+			<TextField #confirmPassword="ngModel"
+			 class="input" hint="Confirm password"
+			  secure="true" [(ngModel)]="user.confirmPassword" 
+			  returnKeyType="done" required
+			  (ngModelChange)="onChange($event)"
+			></TextField>
+			<StackLayout class="hr-light"></StackLayout>
+				<!--___________________________Error________________________________          -->
+				<Label  *ngIf="!pass">
+						<FormattedString>
+					<Span  class="text-danger" text="Password did'nt match">
+	
+					</Span>
+				</FormattedString>
+				</Label>	
+				<!--___________________________________________________________    -->
+		</StackLayout>
+		<StackLayout >
+			<Image class="pic" [src]="imageSrc" *ngIf="isSingleMode" stretch="aspectFit"></Image>
+            <Button text="Select Picture" (tap)="selectPhoto()" class="btn_select_picture"></Button>
+						</StackLayout>
+		<Button text="Sign Up" (tap)="register()" class="btn btn-primary" 
+		></Button>
+		
+	</StackLayout>
+
+	<Label class="sign-up-label" (tap)="login()">
+		<FormattedString>
+			<Span text="Already Registered ?"></Span>
+			<Span text="Login" class="bold"></Span>
+		</FormattedString>
+	</Label>
+
+	<StackLayout horizontalAlignment="center" verticalAlignment="center">
+	
+	</StackLayout>
+
+
+</FlexboxLayout>
+</ScrollView>
+</StackLayout>
+
+<ActivityIndicator class="chartspinner" visibility="{{ !showSpinner ? 'visible' : 'collapse'}}" busy="{{ !showSpinner }}" rowSpan="1" colSpan="1"  row="0" column="0"></ActivityIndicator>
+
+</GridLayout>

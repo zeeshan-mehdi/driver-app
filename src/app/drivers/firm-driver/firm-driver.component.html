@@ -1,0 +1,86 @@
+<ActionBar class="action-bar">
+
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed"
+        (tap)="onDrawerButtonTap()" ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Drivers Information"></Label>
+</ActionBar>
+
+<GridLayout class="page page-content"rows="*" colums="*" style= "background-color:  rgb(238, 238, 238); padding-top: 10">
+     
+    <GridLayout  visibility="{{ showSpinner ? 'visible' : 'collapse'}}"   row="0" column="0" >
+         
+    <ListView  row="0" column="0"  [items]="driverList"
+     (itemTap)="driverSelected($event)"
+     selectionBehavior="Press" 
+  
+             separatorColor="transparent">
+        <ng-template let-item="item">
+            <StackLayout>
+            <GridLayout columns="60,auto,*,80" rows="auto,auto,auto,40" class="list-group-item">
+    
+                <StackLayout orientation="horizontal"
+                    row="0" col="0" rowSpan="2">
+                    <Image src="~/images/user.png"
+                        class="side-img"></Image>
+                </StackLayout>
+                <!-- Row 0 Col 1-->
+                <StackLayout orientation="horizontal" style="padding:5;"
+                    row="0" col="1" colSpan="2">
+                    <Label [text]="item.name" class="lbl-name"></Label>
+                </StackLayout>
+                <!-- Row 1 Col 1-->
+                <StackLayout orientation="horizontal"
+                    row="1" col="1" colSpan="2">
+                    <Label [text]="item.phoneNO" class="lbl-phone" style="padding:5;"></Label>
+                </StackLayout>
+
+                <!-- Row 2 Col 1-->
+
+                <StackLayout orientation="horizontal" 
+                col="2" colSpan="2"  row="0" rowSpan="2" horizontalAlignment="right" style="margin-right: 30">
+                <Label [text]="item.status" class="lbl-active"></Label>
+            </StackLayout>
+                <StackLayout class="hr-light" row="2" col="0" colSpan="4"></StackLayout>
+        
+                <GridLayout orientation="horizontal"  row="3" col="0" colSpan="5" columns="auto,*,auto,*,auto" 
+                style= "padding:10;">
+
+                <StackLayout  orientation="horizontal" col="0">
+                    <Label text="Money Earned: " class="lbl-txt"></Label>
+                    <Label [text]="'$'+ item.totalMoney" class="lbl"  style="font-size:12;"></Label>
+                </StackLayout>
+                <StackLayout orientation="horizontal" col="2">
+                    <Label text="Total Jobs: " class="lbl-txt"></Label>
+                    <Label [text]="item.totalJobs" class="lbl"  style="font-size:12"></Label>
+                </StackLayout>
+
+                <StackLayout orientation="horizontal" col="4" >
+                    <Label text="Active Jobs: " class="lbl-txt"></Label>
+                    <Label text="10" class="lbl"  style="font-size:12"></Label>
+                </StackLayout>
+                </GridLayout>
+                <!-- Row 2 Col 2-->
+                <!-- <StackLayout orientation="horizontal" style="position:center;"
+                    row="3" col="3" colSpan = "2">
+                    <Label text="Active Jobs: " class="lbl"></Label>
+                    <Label text="10" class="lbl-txt"  style="font-size:12"></Label>
+                </StackLayout> -->
+              
+              
+
+                <!-- <StackLayout row="3" colSpan="4" backgroundColor="white">
+                </StackLayout> -->
+
+            </GridLayout>
+        </StackLayout>
+        </ng-template>
+    </ListView>
+    
+    </GridLayout>
+   
+
+
+<ActivityIndicator class="chartspinner" visibility="{{ !showSpinner ? 'visible' : 'collapse'}}" busy="{{ !showSpinner }}" rowSpan="1" colSpan="1"  row="0" column="0"></ActivityIndicator>
+</GridLayout>

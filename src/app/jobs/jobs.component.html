@@ -1,0 +1,197 @@
+
+    <ActionBar class="action-bar">
+
+        <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+        <ActionItem icon="res://navigation/menu" android:visibility="collapsed"
+            (tap)="onDrawerButtonTap()" ios.position="left">
+        </ActionItem>
+        <Label class="action-bar-title" text="Jobs"></Label>
+    </ActionBar>
+    
+<GridLayout rows="*" colums="*">
+     
+    <GridLayout  visibility="{{ showSpinner ? 'visible' : 'collapse'}}" rows="*" colums="*"   row="0" column="0" >
+    
+    <TabView id="tabViewContainer" row="0" col="0">
+
+        
+            <StackLayout *tabItem="{title: 'Active Jobs'}">
+                    <StackLayout>
+                        <GridLayout columns="auto,auto,auto,*" rows=" auto"  visibility="{{ activejobcount ? 'visible' : 'collapse'}}">
+                            <Label text="Joblist:" row="0" col="0" class="lbl-joblist"></Label>
+                            <Label [text]="activejobcount" row="0" col="1" class="lbl-joblist" textWrap="true"></Label>
+                            <Label text="JobItems:" row="0" col="2" class="lbl-jobitems"></Label>
+                            <Label [text]="activejobcount" row="0" col="3" class="lbl-jobitems" textWrap="true"></Label>
+                        </GridLayout>  
+        
+                        <Label text="No Jobs yet! " row="0" col="0" class="lbl-joblist"  visibility="{{ !activejobcount ? 'visible' : 'collapse'}}" ></Label>
+                        
+                    </StackLayout>
+                        <ListView class="list-group" [items]="activejobs" (itemTap)="onItemTap($event)">
+                            <ng-template let-item="item">
+                                <StackLayout style="margin-bottom: 20;" class="list-group-item">
+                                <GridLayout columns="50,*,*" rows="auto,auto,auto"  >
+                                    <StackLayout orientation="horizontal" width="auto" height="auto"
+                                        row="0" col="0" rowSpan="2">
+                                        <Image src="~/images/map.png"
+                                            class="side-img"></Image>
+                                    </StackLayout>
+                                  
+                                    <StackLayout orientation="horizontal" width="auto" height="auto"
+                                        row="0" col="1" colSpan="2">
+                                        <Label text="Origin : " class="lbl"></Label>
+                                        <Label [text]="item.jobOrigin" textWrap="true" class="lbl-txt"></Label>
+                                    </StackLayout>
+                                   
+                                    <StackLayout orientation="horizontal" width="auto" height="auto"
+                                        row="1" col="1" colSpan="2">
+                                        <Label text="Destination : " class="lbl"></Label>
+                                        <Label [text]="item.jobDestination" class="lbl-txt" textWrap="true"></Label>
+                                   
+                                    </StackLayout>
+                                   
+                                    <StackLayout orientation="vertical" width="auto" height="auto"  row="2" col="0" colSpan="3" >
+                                         <GridLayout columns="auto,*,auto" style="padding-left: 20; padding-right:20;" >
+                                                
+                                            <StackLayout orientation="horizontal" width="auto" height="auto"  col="0"                            >
+                                            <Label text="Total Bids : " class="lbl"></Label>
+                                            <Label [text]="item.totalBids" class="lbl-txt" textWrap="true"></Label>
+                                        </StackLayout>
+                                            <StackLayout  col="2" orientation="horizontal" width="auto" height="auto" >
+                                            <Label text="Minimum Bid : " class="lbl"></Label>
+                                            <Label [text]="item.minBid" class="lbl-txt" textWrap="true"></Label>
+                                        </StackLayout>
+                                    </GridLayout>
+        
+                                </StackLayout>
+                    
+                                </GridLayout>
+                            </StackLayout>
+                            </ng-template>
+                        </ListView>
+                </StackLayout>
+        <StackLayout *tabItem="{title: 'Ongoing Jobs'}">
+            <GridLayout columns="auto,auto,auto,*" rows=" auto" visibility="{{ ongjobcount ? 'visible' : 'collapse'}}" >
+                <Label text="Joblist:" row="0" col="0" class="lbl-joblist"></Label>
+                <Label [text]="ongjobcount" row="0" col="1" class="lbl-joblist" textWrap="true"></Label>
+                <Label text="JobItems:" row="0" col="2" class="lbl-jobitems"></Label>
+                <Label [text]="ongjobcount" row="0" col="3" class="lbl-jobitems" textWrap="true"></Label>
+            </GridLayout>
+
+            <Label text="No Jobs yet! " row="0" col="0" class="lbl-joblist"  visibility="{{ !ongjobcount ? 'visible' : 'collapse'}}" ></Label>
+                 
+               
+            <ListView class="list-group" [items]="ongoingJobs" >
+                <ng-template let-item="item">
+                    <GridLayout columns="50,*,*" rows="auto,auto,auto" class="list-group-item">
+                        <StackLayout orientation="horizontal" width="auto" height="auto"
+                            row="0" col="0" rowSpan="2">
+                            <Image src="~/images/map.png"
+                                class="side-img"></Image>
+                        </StackLayout>
+                      
+                        <StackLayout orientation="horizontal" width="auto" height="auto"
+                            row="0" col="1" colSpan="2">
+                            <Label text="Origin : " class="lbl"></Label>
+                            <Label [text]="item.jobOrigin" textWrap="true" class="lbl-txt"></Label>
+                        </StackLayout>
+                      
+                        <StackLayout orientation="horizontal" width="auto" height="auto"
+                            row="1" col="1" colSpan="2">
+                            <Label text="Destination : " class="lbl"></Label>
+                            <Label [text]="item.jobDestination" class="lbl-txt" textWrap="true"></Label>
+                        </StackLayout>
+                      
+                        <StackLayout orientation="horizontal" width="auto" height="auto"    row="2" col="0" colSpan="3">
+
+                            <GridLayout columns="auto,*,auto" >
+                                    
+                                <StackLayout orientation="horizontal" width="auto" height="auto"  col="0"                            >
+                                <Label text="Total Bids : " class="lbl"></Label>
+                                <Label [text]="item.totalBids" class="lbl-txt" textWrap="true"></Label>
+                            </StackLayout>
+                           
+                            <StackLayout  col="2" orientation="horizontal" width="auto" height="auto" >
+                                <Label text="Minimum Bid : " class="lbl"></Label>
+                                <Label [text]="item.minBid" class="lbl-txt" textWrap="true"></Label>
+                            </StackLayout>
+                        </GridLayout>
+
+                    </StackLayout>
+        
+                    </GridLayout>
+                </ng-template>
+            </ListView>
+    </StackLayout>
+          
+ 
+        <StackLayout *tabItem="{title: 'Alloted Jobs'}">
+            <StackLayout>
+                <GridLayout columns="auto,auto,auto,*" rows=" auto"  visibility="{{ alljobcount ? 'visible' : 'collapse'}}" >
+                    <Label text="Joblist:" row="0" col="0" class="lbl-joblist"></Label>
+                    <Label [text]="alljobcount" row="0" col="1" class="lbl-joblist" textWrap="true"></Label>
+                    <Label text="JobItems:" row="0" col="2" class="lbl-jobitems"></Label>
+                    <Label [text]="alljobcount" row="0" col="3" class="lbl-jobitems" textWrap="true"></Label>
+                </GridLayout> 
+                
+                    <Label text="No Jobs yet! " row="0" col="0" class="lbl-joblist"  visibility="{{ !alljobcount ? 'visible' : 'collapse'}}" ></Label>
+                 
+               
+            </StackLayout>
+                <ListView class="list-group" [items]="allotedjobs" >
+                    <ng-template let-item="item">
+                        <GridLayout columns="50,*,*" rows="auto,auto,auto" class="list-group-item">
+                            <StackLayout orientation="horizontal" width="auto" height="auto"
+                                row="0" col="0" rowSpan="2">
+                                <Image src="~/images/map.png"
+                                    class="side-img"></Image>
+                            </StackLayout>
+                          
+                            <StackLayout orientation="horizontal" width="auto" height="auto"
+                                row="0" col="1" colSpan="2">
+                                <Label text="Origin : " class="lbl"></Label>
+                                <Label [text]="item.jobOrigin" textWrap="true" class="lbl-txt"></Label>
+                            </StackLayout>
+                          
+                            <StackLayout orientation="horizontal" width="auto" height="auto"
+                                row="1" col="1" colSpan="2">
+                                <Label text="Destination : " class="lbl"></Label>
+                                <Label [text]="item.jobDestination" class="lbl-txt" textWrap="true"></Label>
+                            </StackLayout>
+                          
+                            <StackLayout orientation="horizontal" width="auto" height="auto"    row="2" col="0" colSpan="3">
+
+                                <GridLayout columns="auto,*,auto" >
+                                        
+                                    <StackLayout orientation="horizontal" width="auto" height="auto"  col="0"                            >
+                                    <Label text="Total Bids : " class="lbl"></Label>
+                                    <Label [text]="item.totalBids" class="lbl-txt" textWrap="true"></Label>
+                                </StackLayout>
+                               
+                                <StackLayout  col="2" orientation="horizontal" width="auto" height="auto" >
+                                    <Label text="Minimum Bid : " class="lbl"></Label>
+                                    <Label [text]="item.minBid" class="lbl-txt" textWrap="true"></Label>
+                                </StackLayout>
+                            </GridLayout>
+
+                        </StackLayout>
+            
+                        </GridLayout>
+                    </ng-template>
+                </ListView>
+        </StackLayout>
+
+
+
+    </TabView>
+
+    
+</GridLayout>
+   
+
+<ActivityIndicator class="chartspinner" visibility="{{ !showSpinner ? 'visible' : 'collapse'}}" busy="{{ !showSpinner }}" rowSpan="1" colSpan="1"  row="0" column="0"></ActivityIndicator>
+</GridLayout>
+
+    
+    
+

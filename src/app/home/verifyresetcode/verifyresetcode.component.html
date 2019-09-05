@@ -1,0 +1,29 @@
+<ActionBar title="Verification" class="action-bar">
+    <NavigationButton android.systemIcon="ic_menu_back" text="Back to ActionBar"
+        (tap)="goBack()"></NavigationButton>
+</ActionBar>
+
+
+
+
+<GridLayout  rows="*" colums="*" >
+
+    <StackLayout class="page page-content"  visibility="{{ showSpinner ? 'visible' : 'collapse'}}" row="0" column="0">
+<GridLayout class="page">
+<ScrollView>
+    <StackLayout>
+        <Image src="~/images/icon" class="img-logo"></Image>
+        <Label text="Enter Verification Code here" class="lbl-verify"></Label>
+        <TextField [(ngModel)]="code" hint="verification code"
+            class="txt-verify"></TextField>
+        <Button text="Submit" (tap)="onButtonTap()" class="btn btn-verify"></Button>
+
+        <Label text="Resend Verification code" class="lbl" (tap)="resend()"></Label>
+    </StackLayout>
+</ScrollView>
+</GridLayout>
+</StackLayout>
+
+<ActivityIndicator class="chartspinner" visibility="{{ !showSpinner ? 'visible' : 'collapse'}}" busy="{{ !showSpinner }}" rowSpan="1" colSpan="1"  row="0" column="0"></ActivityIndicator>
+
+</GridLayout>

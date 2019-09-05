@@ -1,0 +1,42 @@
+<ActionBar class="action-bar">
+
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed"
+        (tap)="onDrawerButtonTap()" ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Sales"></Label>
+</ActionBar>
+
+<StackLayout>
+    <ListView class="list-group" [items]="countries" (itemTap)="onItemTap($event)">
+        <ng-template let-country="item">
+            <GridLayout columns="50,*," rows="auto,auto,auto" class="list-group-item">
+                <!-- Row 0 Col 1-->
+                <StackLayout orientation="horizontal" width="auto" height="auto"
+                    row="" col="1" horizontalAlignment="right" marginTop="2">
+                    <Label text="Job Revenue : " class="lbl"></Label>
+                    <Label text="1200" class="lbl-txt" textWrap="true"></Label>
+                </StackLayout>
+                <StackLayout orientation="horizontal" width="auto" height="auto"
+                    row="1" col="0" rowSpan="2">
+                    <Image src="https://play.nativescript.org/dist/assets/img/NativeScript_logo.png"
+                        class="side-img"></Image>
+                </StackLayout>
+                <!-- Row 1 Col 1-->
+                <StackLayout orientation="horizontal" width="auto" height="auto"
+                    row="1" col="1">
+                    <Label text="Origin : " class="lbl"></Label>
+                    <Label text="islamabad, pakistan" textWrap="true" class="lbl-txt"></Label>
+                </StackLayout>
+                <!-- Row 2 Col 1-->
+                <StackLayout orientation="horizontal" width="auto" height="auto"
+                    row="2" col="1">
+                    <Label text="Destination : " class="lbl"></Label>
+                    <Label text="peshawar" class="lbl-txt" textWrap="true"></Label>
+                </StackLayout>
+
+            </GridLayout>
+        </ng-template>
+    </ListView>
+
+</StackLayout>

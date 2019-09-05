@@ -1,0 +1,15 @@
+<ActionBar title="Verification" class="action-bar">
+    <NavigationButton android.systemIcon="ic_menu_back" text="Back to ActionBar"
+        (tap)="goBack()"></NavigationButton>
+</ActionBar>
+<ScrollView>
+    <StackLayout>
+        <Image src="~/images/icon" class="img-logo"></Image>
+        <Label text="Enter Verification Code here" class="lbl-verify"></Label>
+        <TextField [(ngModel)]="code" hint="verification code"
+            class="txt-verify"></TextField>
+        <Button text="Submit" (tap)="onButtonTap()" class="btn btn-verify"></Button>
+
+        <Label text="Resend Verification code" (tap)="resend()"></Label>
+    </StackLayout>
+</ScrollView>

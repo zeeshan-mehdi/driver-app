@@ -1,0 +1,51 @@
+<ActionBar class="action-bar">
+
+
+    <Label class="action-bar-title" text="Bid on Job"></Label>
+
+    
+    <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" 
+    (tap)="goBackPage()"></NavigationButton>
+</ActionBar>
+
+<GridLayout class="page page-content"rows="*" colums="*" style= "padding-top: 10">
+     
+    <GridLayout  visibility="{{ showSpinner ? 'visible' : 'collapse'}}"   row="0" column="0" >
+         
+<ScrollView class="page">
+    <StackLayout style="text-align: center; padding-left: auto;padding-right: auto">
+        <!-- Row 0 Col 1-->
+        <StackLayout orientation="horizontal" width="auto" height="auto" >
+            <Label text="Origin : " class="lbl"></Label>
+            <Label [text]="job.jobOrigin" textWrap="true" class="lbl-txt"></Label>
+        </StackLayout>
+        <!-- Row 1 Col 1-->
+        <StackLayout orientation="horizontal" width="auto" height="auto" >
+            <Label text="Destination : " class="lbl"></Label>
+            <Label [text]="job.jobDestination" class="lbl-txt" textWrap="true"></Label>
+        </StackLayout>
+
+        <StackLayout orientation="horizontal" width="auto" height="auto" >
+                <Label text="Total Bids : " class="lbl"></Label>
+                <Label [text]="job.totalBids" class="lbl-txt" textWrap="true"></Label>
+            </StackLayout>
+
+            <StackLayout orientation="horizontal" width="auto" height="auto" >
+                    <Label text="Minimum Bid : " class="lbl"></Label>
+                    <Label [text]="job.minBid" class="lbl-txt" textWrap="true"></Label>
+                </StackLayout>
+        <TextField [(ngModel)]="bidamount" hint="Enter amount" class="txt-amount"
+            keyboardType="number"></TextField>
+
+        <Button text="Bid" (tap)="onButtonTap()" class="btn btn-primary btn-bid"></Button>
+        <Label  [text]="durationTime" style="color:brown; text-align: center;font-size:40"  ></Label>
+    </StackLayout>
+</ScrollView>
+
+
+</GridLayout>
+   
+
+
+<ActivityIndicator class="chartspinner" visibility="{{ !showSpinner ? 'visible' : 'collapse'}}" busy="{{ !showSpinner }}" rowSpan="1" colSpan="1"  row="0" column="0"></ActivityIndicator>
+</GridLayout>

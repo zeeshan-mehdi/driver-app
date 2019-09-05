@@ -1,0 +1,35 @@
+<ActionBar title="New Password" class="action-bar">
+    <NavigationButton android.systemIcon="ic_menu_back" text="Back to ActionBar"
+        (tap)="goBack()"></NavigationButton>
+</ActionBar>
+
+
+
+
+<GridLayout  rows="*" colums="*" >
+
+    <StackLayout class="page page-content"  visibility="{{ showSpinner ? 'visible' : 'collapse'}}" row="0" column="0">
+<GridLayout class="page">
+<ScrollView>
+    <StackLayout>
+        <Label text="Reset Password here" class="lbl-verify"></Label>
+
+       
+     
+        <TextField [(ngModel)]="pass" hint="New Password"
+            class="txt-verify"   secure="true"  [returnKeyType]="next" 
+            minlength="6"></TextField>
+            
+            <TextField [(ngModel)]="repass" hint="Renter Password"
+            class="txt-verify" secure="true"   (ngModelChange)="onChange($event)"  [returnKeyType]="next" 
+            minlength="6"></TextField>
+        <Button text="Submit" (tap)="onButtonTap()" class="btn btn-verify"></Button>
+
+            </StackLayout>
+</ScrollView>
+</GridLayout>
+</StackLayout>
+
+<ActivityIndicator class="chartspinner" visibility="{{ !showSpinner ? 'visible' : 'collapse'}}" busy="{{ !showSpinner }}" rowSpan="1" colSpan="1"  row="0" column="0"></ActivityIndicator>
+
+</GridLayout>

@@ -1,0 +1,66 @@
+<ActionBar class="action-bar" title="Profile">
+
+
+    <ActionItem   android.position="right" ios.systemIcon="12" 
+    android.systemIcon="ic_menu_delete" (tap)='del()'></ActionItem>
+
+    <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" 
+    (tap)="goBackPage()"></NavigationButton>
+
+
+    </ActionBar>
+
+    
+<GridLayout class="page page-content" rows="*" colums="*" style= " padding-top: 10">
+     
+    <GridLayout  visibility="{{ showSpinner ? 'visible' : 'collapse'}}"   row="0" column="0" >
+    <ScrollView>
+    <StackLayout>
+
+        	<StackLayout >
+      <Image class="pic" src="~/images/user.png"  width="100" height="100"  stretch="aspectFit"></Image>
+         </StackLayout>
+
+         <Label text="Name" class="lbl"></Label>
+         <TextField [(ngModel)]="user.name" class="txt-field" isEnabled="false"></TextField>
+     
+         <Label text="Phone No" class="lbl"></Label>
+                <TextField [(ngModel)]="user.phoneNO" class="txt-field" isEnabled="false"></TextField>
+
+                <Label text="Address" class="lbl"></Label>
+                <TextField [(ngModel)]="user.address" class="txt-field" isEnabled="false"></TextField>
+
+                <Label text="Status" class="lbl"></Label>
+                <TextField [(ngModel)]="user.status" class="txt-field" isEnabled="false"></TextField>
+
+                <Label text="Badge No" class="lbl"></Label>
+                <TextField [(ngModel)]="user.badgeNo" class="txt-field" isEnabled="false"></TextField>
+            
+                <Label text="License" class="lbl"></Label>
+                <TextField [(ngModel)]="user.license" class="txt-field" isEnabled="false"></TextField>
+
+                <Label text="Total Money" class="lbl"></Label>
+                <TextField [(ngModel)]="user.totalMoney" class="txt-field" isEnabled="false"></TextField>
+                <Label text="Total Jobs" class="lbl"></Label>
+                <TextField [(ngModel)]="user.totalJobs" class="txt-field" isEnabled="false"></TextField>
+            
+
+            
+
+            
+              
+            
+     
+
+         
+       
+            
+    </StackLayout>
+</ScrollView>
+
+</GridLayout>
+   
+
+
+<ActivityIndicator class="chartspinner" visibility="{{ !showSpinner ? 'visible' : 'collapse'}}" busy="{{ !showSpinner }}" rowSpan="1" colSpan="1"  row="0" column="0"></ActivityIndicator>
+</GridLayout>
